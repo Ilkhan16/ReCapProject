@@ -1,5 +1,6 @@
 ﻿using DataAccess.Abstract;
 using Entities.Concrete;
+using System.Linq.Expressions;
 
 namespace DataAccess.Concrete.InMemory
 {
@@ -34,35 +35,48 @@ namespace DataAccess.Concrete.InMemory
 
         }
 
-    public List<Car> GetById(int id)
-    {
-        return _cars.Where(c => c.CarId == id).ToList();
-    }
+        public List<Car> GetById(int id)
+        {
+            return _cars.Where(c => c.CarId == id).ToList();
+        }
 
-    public List<Car> GetAll()
-    {
-        return _cars;
-    }
+        public List<Car> GetAll()
+        {
+            return _cars;
+        }
 
-    public void Add(Car car)
-    {
-        _cars.Add(car);
-    }
+        public Car Get(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
 
-    public void Update(Car car)
-    {
-        Car carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
-        carToUpdate.CarId = car.CarId;
-        carToUpdate.BrandId = car.BrandId;
-        carToUpdate.ColorId = car.ColorId;
-        carToUpdate.DailyPrice = car.DailyPrice;
-        carToUpdate.Description = car.Description;
-        carToUpdate.ModelYear = car.ModelYear;
-    }
+        public List<Car> GetAll(Expression<Func<Car, bool>>? filter = null)
+        {
+            throw new NotImplementedException();
+        }
 
-    public void Delete(Car car)
-    {
-        Car carToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
+        public void Add(Car car)
+        {
+            _cars.Add(car);
+        }
+
+        public void Update(Car car)
+        {
+            var carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
+            if (carToUpdate != null)
+            {
+                carToUpdate.CarId = car.CarId;
+                carToUpdate.BrandId = car.BrandId;
+                carToUpdate.ColorId = car.ColorId;
+                carToUpdate.DailyPrice = car.DailyPrice;
+                carToUpdate.Description = car.Description;
+                carToUpdate.ModelYear = car.ModelYear;
+            }
+        }
+
+        public void Delete(Car car)
+        {
+            var carToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
+        }
     }
-}
 }

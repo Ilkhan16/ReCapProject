@@ -2,7 +2,7 @@
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal:IEntityRepository<Car>
+    public interface IBrandDal:IEntityRepository<Brand>
     {
     }
 }
