@@ -3,15 +3,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class ReCapDB:DbContext
+    public class ReCapDB : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"(localdb)\MSSQLLocalDB;DataBase=ReCapDB;Trusted_connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;DataBase=ReCapDB;Trusted_connection=true");
         }
 
-        public DbSet<Car> Car { get; set; }
-        public DbSet<Color> Color { get; set; }
-        public DbSet<Brand> Brand { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Color> Colors { get; set; }
+        public DbSet<Brand> Brands { get; set; }
     }
 }
