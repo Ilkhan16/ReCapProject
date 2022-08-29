@@ -3,40 +3,39 @@ using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
-namespace Business.Concrete
+namespace Business.Concrete;
+
+public class ColorManager:IColorService
 {
-    public class ColorManager:IColorService
+    IColorDal _colorDal;
+
+    public ColorManager(IColorDal colorDal)
     {
-        IColorDal _colorDal;
+        _colorDal = colorDal;
+    }
 
-        public ColorManager(IColorDal colorDal)
-        {
-            _colorDal = colorDal;
-        }
+    public List<Color> GetAll()
+    {
+        return _colorDal.GetAll();
+    }
 
-        public List<Color> GetAll()
-        {
-            return _colorDal.GetAll();
-        }
+    public List<Color> GetByColorId(int colorId)
+    {
+        return _colorDal.GetAll(car => car.ColorId == colorId).ToList();
+    }
 
-        public List<Color> GetByColorId(int colorId)
-        {
-            return _colorDal.GetAll(car => car.ColorId == colorId).ToList();
-        }
+    public void Add(Color color)
+    {
+        _colorDal.Add(color);
+    }
 
-        public void Add(Color color)
-        {
-            _colorDal.Add(color);
-        }
+    public void Update(Color color)
+    {
+        _colorDal.Update(color);
+    }
 
-        public void Update(Color color)
-        {
-            _colorDal.Update(color);
-        }
-
-        public void Delete(Color color)
-        {
-            _colorDal.Delete(color);
-        }
+    public void Delete(Color color)
+    {
+        _colorDal.Delete(color);
     }
 }

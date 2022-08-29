@@ -1,13 +1,12 @@
 ﻿using Entities.Concrete;
 
-namespace Business.Abstract
+namespace Business.Abstract;
+
+public interface IColorService
 {
-    public interface IColorService
-    {
-        List<Color> GetAll();
-        List<Color> GetByColorId(int colorId);
-        void Add(Color color);
-        void Update(Color color);
-        void Delete(Color color);
-    }
+    List<Color> GetAll();
+    List<Color> GetByColorId(int colorId);
+    void Add(Color color);
+    void Update(Color color);
+    void Delete(Color color);
 }

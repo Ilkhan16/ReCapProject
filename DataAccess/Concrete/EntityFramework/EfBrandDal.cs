@@ -2,9 +2,8 @@
 using Entities.Concrete;
 using Core.DataAccess.EntityFramework;
 
-namespace DataAccess.Concrete.EntityFramework
+namespace DataAccess.Concrete.EntityFramework;
+
+public class EfBrandDal :EfEntityRepositoryBase<Brand,ReCapDB> ,IBrandDal
 {
-    public class EfBrandDal :EfEntityRepositoryBase<Brand,ReCapDB> ,IBrandDal
-    {
-    }
 }

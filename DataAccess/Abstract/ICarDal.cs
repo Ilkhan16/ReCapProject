@@ -2,10 +2,9 @@
 using Entities.Concrete;
 using Entities.DTOs;
 
-namespace DataAccess.Abstract
+namespace DataAccess.Abstract;
+
+public interface ICarDal:IEntityRepository<Car>
 {
-    public interface ICarDal:IEntityRepository<Car>
-    {
-        List<CarDetailDto> GetCarDetails();
-    }
+    List<CarDetailDto> GetCarDetails();
 }
