@@ -1,46 +1,32 @@
-﻿using System.Linq.Expressions;
+﻿using System.Threading.Tasks.Dataflow;
+using Core.DataAccess.EntityFramework;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Microsoft.EntityFrameworkCore;
+using Entities.DTOs;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCarDal : ICarDal
+    public class EfCarDal : EfEntityRepositoryBase<Car,ReCapDB>,ICarDal
     {
-        public Car Get(Expression<Func<Car, bool>> filter)
+        public List<CarDetailDto> GetCarDetails()
         {
-            using var db = new ReCapDB();
-            return db.Set<Car>().SingleOrDefault(filter);
-        }
+            using (ReCapDB db=new ReCapDB())
+            {
+                var result =
+                    from car in db.Cars
+                    join bb in db.Brands 
+                        on car.BrandId equals bb.BrandId
+                    join co in db.Colors
+                        on car.ColorId equals co.ColorId
+                    select new CarDetailDto
+                    {
+                        Description = car.Description, BrandName = bb.BrandName, ColorName = co.ColorName,
+                        DailyPrice = car.DailyPrice
+                    };
 
-        public List<Car> GetAll(Expression<Func<Car, bool>>? filter = null)
-        {
-            using var db = new ReCapDB();
-            return filter == null ? db.Set<Car>().ToList() : db.Set<Car>().Where(filter).ToList();
-        }
+                return result.ToList();
+            }
 
-        public void Add(Car entity)
-        {
-            using var db = new ReCapDB();
-            var addCar = db.Entry(entity);
-            addCar.State = EntityState.Added;
-            db.SaveChanges();
-        }
-
-        public void Update(Car entity)
-        {
-            using var db = new ReCapDB();
-            var updateCar = db.Entry(entity);
-            updateCar.State = EntityState.Modified;
-            db.SaveChanges();
-        }
-
-        public void Delete(Car entity)
-        {
-            using var db = new ReCapDB();
-            var deleteCar = db.Entry(entity);
-            deleteCar.State = EntityState.Deleted;
-            db.SaveChanges();
         }
     }
 }

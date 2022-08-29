@@ -1,8 +1,7 @@
-﻿using Business.Abstract;
-using Business.Concrete;
+﻿using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace ConsoleUI
 {
@@ -10,30 +9,31 @@ namespace ConsoleUI
     {
         static void Main()
         {
-            ReCapDB db = new ReCapDB();
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Add(new Car{BrandId = 1,ColorId = 2,DailyPrice = 5322,ModelYear = 2017,Description = "Xc50"});
+            //carManager.Update(new Car {CarId = 10,BrandId = 1, ColorId = 1, ModelYear = 2019, DailyPrice = 3500, Description = "Brera" });
 
-            foreach (var dbd in db.Brands)
+            //BrandManager brandManager = new BrandManager(new EfBrandDal());
+            //brandManager.Add(new Brand { BrandName = "Mercedes" });
+
+            //ColorManager colorManager = new ColorManager(new EfColorDal());
+            //colorManager.Add(new Color{ColorName = "Orange"});
+            //colorManager.Update(new Color{ColorId = 2,ColorName = "Brown"});
+
+
+
+            //GetCarDetails(carManager);
+        }
+
+        private static void GetCarDetails(CarManager carManager)
+        {
+            foreach (var car in carManager.GetCarDetails())
             {
-                Console.WriteLine(dbd.BrandId+" "+dbd.BrandName);
+                Console.WriteLine("Brand: " + car.BrandName + "\n" + "CarName: " + car.Description + "\n" + "Color: " +
+                                  car.ColorName + "\n" + "Daily Price: " + car.DailyPrice);
+                Console.WriteLine("************************");
             }
-
-            //var carManager = new CarManager(new EfCarDal());
-            //foreach (var ccc in carManager.GetCarsByBrandId(1))
-            //{
-
-
-
-            //    Console.WriteLine("CarId: " + ccc.CarId);
-            //    Console.WriteLine("BrandId: " + ccc.BrandId);
-            //    Console.WriteLine("ColorId: " + ccc.ColorId);
-            //    Console.WriteLine("ModelYear: " + ccc.ModelYear);
-            //    Console.WriteLine("DailyPrice: " + ccc.DailyPrice + " TL");
-            //    Console.WriteLine("Description: " + ccc.Description);
-            //    Console.WriteLine("*******************************************");
-            //}
-
-            //Console.ReadLine();
-
+            Console.ReadLine();
         }
     }
 }
