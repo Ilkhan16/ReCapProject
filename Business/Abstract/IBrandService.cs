@@ -1,14 +1,8 @@
-﻿using Core.Utilites.Results.Abstract;
+﻿using Core.Business.Abstract;
 using Entities.Concrete;
 
 namespace Business.Abstract;
 
-public interface IBrandService
+public interface IBrandService:IEntityServiceDal<Brand>
 {
-    IDataResult<List<Brand>> GetAll();
-    IResult GetByBrandId(int brandId);
-    //IDataResult<List<Brand>> GetByBrandId(int brandId);
-    IResult Add(Brand brand);
-    IResult Update(Brand brand);
-    IResult Delete(Brand brand);
 }

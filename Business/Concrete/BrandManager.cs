@@ -21,10 +21,10 @@ public class BrandManager:IBrandService
         return new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.BrandListed);
     }
 
-    public IResult GetByBrandId(int brandId)
+    public IDataResult<Brand> GetById(int id)
     {
-        _brandDal.GetAll(b => b.BrandId == brandId).ToList();
-        return new SuccessResult(Messages.BrandListed);
+        return new SuccessDataResult<Brand>(_brandDal.Get(brand => brand.BrandId == id));
+
     }
 
     public IResult Add(Brand brand)

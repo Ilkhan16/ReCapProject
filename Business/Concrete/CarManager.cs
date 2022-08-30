@@ -22,6 +22,11 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<Car>>(_carDal.GetAll() ,Messages.CarsListed);
     }
 
+    public IDataResult<Car> GetById(int id)
+    {
+        return new SuccessDataResult<Car>(_carDal.Get(car => car.CarId == id));
+    }
+
     public IDataResult<List<Car>> GetByBrandId(int brandId)
     {
         return new SuccessDataResult<List<Car>>(_carDal.GetAll(car => car.BrandId == brandId).ToList());

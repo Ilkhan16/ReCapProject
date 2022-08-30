@@ -1,13 +1,8 @@
-﻿using Core.Utilites.Results.Abstract;
+﻿using Core.Business.Abstract;
 using Entities.Concrete;
 
 namespace Business.Abstract;
 
-public interface IColorService
+public interface IColorService:IEntityServiceDal<Color>
 {
-    IDataResult<List<Color>> GetAll();
-    IResult GetByColorId(int colorId);
-    IResult Add(Color color);
-    IResult Update(Color color);
-    IResult Delete(Color color);
 }

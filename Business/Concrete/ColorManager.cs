@@ -3,7 +3,6 @@ using Business.Constans;
 using Core.Utilites.Results.Abstract;
 using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 
 namespace Business.Concrete;
@@ -22,9 +21,9 @@ public class ColorManager:IColorService
         return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.ColorListed);
     }
 
-    public IResult GetByColorId(int colorId)
+    public IResult GetById(int id)
     {
-        _colorDal.GetAll(car => car.ColorId == colorId).ToList();
+        _colorDal.GetAll(car => car.ColorId == id).ToList();
         return new SuccessResult(Messages.ColorListed);
 
     }
