@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constans;
+using Core.Utilites.Results.Abstract;
+using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -14,45 +17,45 @@ public class CarManager : ICarService
         _carDal = carDal;
     }
 
-    public List<Car> GetAll()
+    public IDataResult<List<Car>> GetAll()
     {
-        return _carDal.GetAll();
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll() ,Messages.CarsListed);
     }
 
-    public List<Car> GetByBrandId(int brandId)
+    public IDataResult<List<Car>> GetByBrandId(int brandId)
     {
-        return _carDal.GetAll(car => car.BrandId == brandId).ToList();
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll(car => car.BrandId == brandId).ToList());
     }
 
-    public List<Car> GetByColorId(int colorId)
+    public IDataResult<List<Car>> GetByColorId(int colorId)
     {
-        return _carDal.GetAll(car => car.ColorId == colorId).ToList();
+        return new SuccessDataResult<List<Car>>( _carDal.GetAll(car => car.ColorId == colorId).ToList());
     }
 
-    public List<CarDetailDto> GetCarDetails()
+    public IDataResult<List<CarDetailDto>> GetCarDetails()
     {
-        return _carDal.GetCarDetails();
+        return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails(),Messages.CarsListed);
     }
 
-    public void Add(Car car)
+    public IResult Add(Car car)
     {
-        if (car.Description is { Length: >= 2 } && car.DailyPrice>0) 
+        if (car.CarName is { Length: <= 2 } && car.DailyPrice <= 0)
         {
-            _carDal.Add(car);
+            return new ErrorResult(Messages.CarNameInvalid);
         }
-        else
-        {
-            Console.WriteLine("It doesn't follow the rules!");
-        }
+        _carDal.Add(car);
+        return new SuccessResult(Messages.CarAdded);
     }
 
-    public void Update(Car car)
+    public IResult Update(Car car)
     {
         _carDal.Update(car);
+        return new SuccessResult(Messages.CarUpdated);
     }
 
-    public void Delete(Car car)
+    public IResult Delete(Car car)
     {
         _carDal.Delete(car);
+        return new SuccessResult(Messages.CarRemoved);
     }
 }
