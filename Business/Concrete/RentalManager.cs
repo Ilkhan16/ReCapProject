@@ -29,7 +29,7 @@ public class RentalManager:IRentalService
     public IResult Add(Rental rental)
     {
         var result = _rentalDal.Get(r => r.CarId==rental.CarId && r.ReturnDate == null);
-        if (rental.ReturnDate!=null)
+        if (rental.ReturnDate==null)
         {
             _rentalDal.Add(rental);
             return new SuccessResult(Messages.RentalAdded);

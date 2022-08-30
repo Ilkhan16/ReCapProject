@@ -24,7 +24,7 @@ class Program
 
 
         RentalManager rentalManager = new RentalManager(new EfRentalDal());
-        var result = rentalManager.Add(new Rental {ReturnDate = new DateTime(2022,05,20),CarId = 2, CustomerId = 1, RentDate = DateTime.Now });
+        var result = rentalManager.Add(new Rental {CarId = 6, CustomerId = 5, RentDate = DateTime.Now });
         if (result.Success)
         {
             Console.WriteLine(result.Messages);

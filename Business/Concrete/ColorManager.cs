@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Core.Business.Abstract;
 using Core.Utilites.Results.Abstract;
 using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
@@ -21,11 +22,9 @@ public class ColorManager:IColorService
         return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.ColorListed);
     }
 
-    public IResult GetById(int id)
+    IDataResult<Color> IEntityServiceDal<Color>.GetById(int id)
     {
-        _colorDal.GetAll(car => car.ColorId == id).ToList();
-        return new SuccessResult(Messages.ColorListed);
-
+        throw new NotImplementedException();
     }
 
     public IResult Add(Color color)
