@@ -22,9 +22,9 @@ public class ColorManager:IColorService
         return new SuccessDataResult<List<Color>>(_colorDal.GetAll(),Messages.ColorListed);
     }
 
-    IDataResult<Color> IEntityServiceDal<Color>.GetById(int id)
+    public IDataResult<Color> GetById(int id)
     {
-        throw new NotImplementedException();
+        return new SuccessDataResult<Color>(_colorDal.Get(color => color.ColorId == id), Messages.Listed);
     }
 
     public IResult Add(Color color)

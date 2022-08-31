@@ -23,7 +23,7 @@ public class BrandManager:IBrandService
 
     public IDataResult<Brand> GetById(int id)
     {
-        return new SuccessDataResult<Brand>(_brandDal.Get(brand => brand.BrandId == id));
+        return new SuccessDataResult<Brand>(_brandDal.Get(brand => brand.BrandId == id), Messages.Listed);
 
     }
 

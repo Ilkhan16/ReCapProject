@@ -1,7 +1,10 @@
-﻿namespace Business.Constans;
+﻿using System.Collections.Generic;
+
+namespace Business.Constans;
 
 public static class Messages
 {
+    public static string Listed = "ID listed.";
     public static string CarAdded = "Car added.";
     public static string CarNameInvalid = "Car name is invalid!!";
     public static string CarUpdated = "Car updated.";
