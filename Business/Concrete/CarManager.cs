@@ -44,7 +44,7 @@ public class CarManager : ICarService
 
     public IResult Add(Car car)
     {
-        if (car.CarName is { Length: <= 2 } && car.DailyPrice <= 0)
+        if (car.CarName is { Length: <= 2 } || car.DailyPrice <= 0)
         {
             return new ErrorResult(Messages.CarNameInvalid);
         }
