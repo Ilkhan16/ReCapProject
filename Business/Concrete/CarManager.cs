@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
 using Core.Utilites.Results.Abstract;
 using Core.Utilites.Results.Concrete;
 using DataAccess.Abstract;
@@ -42,12 +44,9 @@ public class CarManager : ICarService
         return new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails(),Messages.CarsListed);
     }
 
+    [ValidationAspect(typeof(CarValidator))]
     public IResult Add(Car car)
     {
-        if (car.CarName is { Length: <= 2 } || car.DailyPrice <= 0)
-        {
-            return new ErrorResult(Messages.CarNameInvalid);
-        }
         _carDal.Add(car);
         return new SuccessResult(Messages.CarAdded);
     }
