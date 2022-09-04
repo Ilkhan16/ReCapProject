@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Utilites.Results.Abstract;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 using FluentValidation;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Business.ValidationRules.FluentValidation
 {

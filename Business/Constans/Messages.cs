@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Business.Constans;
+﻿namespace Business.Constans;
 
 public static class Messages
 {
@@ -36,4 +34,10 @@ public static class Messages
     public static string RentalUpdated = "Rental updated.";
     public static string RentalRemoved = "Rental removed!";
     public static string RentalListed = "Rentals listed";
+    //--------------------------------------------------
+    public static string CarImagesAdded="Car Image added.";
+    public static string CarImagesRemoved = "Car Image removed.";
+    public static string CarImagesUpdated = "Car Image updateed.";
+    public static string CarImagesListed = "Car Image listed.";
+    public static string CarImageCountExceeded = "The car cannot have more than 5 pictures.";
 }
