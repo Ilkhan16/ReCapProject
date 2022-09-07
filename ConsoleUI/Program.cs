@@ -9,8 +9,8 @@ class Program
     static void Main()
     {
         CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
-        //customerManager.Delete(new Customer { CustomerId = 13 });
-        //customerManager.Update(new Customer { CustomerId = 3, CompanyName = "Bro Car" });
+        //customerManager.Delete(new Customer { Id = 13 });
+        //customerManager.Update(new Customer { Id = 3, CompanyName = "Bro Car" });
         //foreach (var ccc in customerManager.GetAll().Data)
         //{
         //    Console.WriteLine(ccc.CompanyName);
@@ -24,7 +24,7 @@ class Program
 
 
         RentalManager rentalManager = new RentalManager(new EfRentalDal());
-        var result = rentalManager.Add(new Rental {CarId = 6, CustomerId = 5, RentDate = DateTime.Now });
+        var result = rentalManager.Add(new Rental {CarId = 6, Id = 5, RentDate = DateTime.Now });
         if (result.Success)
         {
             Console.WriteLine(result.Messages);
@@ -35,21 +35,21 @@ class Program
         }
 
         CarManager carManager = new CarManager(new EfCarDal());
-        //carManager.Add(new Car{BrandId = 8,ColorId = 9,DailyPrice = 0,ModelYear = 2017,CarName = "2",Description = "1" });
-        //carManager.Update(new Car {CarId = 10,BrandId = 1, ColorId = 1, ModelYear = 2019, DailyPrice = 3500, Description = "Brera" });
+        //carManager.Add(new Car{Id = 8,Id = 9,DailyPrice = 0,ModelYear = 2017,CarName = "2",Description = "1" });
+        //carManager.Update(new Car {CarId = 10,Id = 1, Id = 1, ModelYear = 2019, DailyPrice = 3500, Description = "Brera" });
         //carManager.Delete(new Car{CarId = 1003});
         //GetCarDetails(carManager);
         //DataDetails(carManager);
 
         BrandManager brandManager = new BrandManager(new EfBrandDal());
         //brandManager.Add(new Brand { BrandName = "Mercedes" });
-        //brandManager.Update(new Brand{BrandId = 2,BrandName = "Purple"});
-        //brandManager.Delete(new Brand{BrandId = 5});
+        //brandManager.Update(new Brand{Id = 2,BrandName = "Purple"});
+        //brandManager.Delete(new Brand{Id = 5});
 
         ColorManager colorManager = new ColorManager(new EfColorDal());
         //colorManager.Add(new Color{ColorName = "Light Blue"});
-        //colorManager.Update(new Color{ColorId = 2,ColorName = "Brown"});
-        //colorManager.Delete(new Color{ColorId = 4});
+        //colorManager.Update(new Color{Id = 2,ColorName = "Brown"});
+        //colorManager.Delete(new Color{Id = 4});
         //ColorGetAll(colorManager);
     }
     
@@ -77,7 +77,7 @@ class Program
     {
         foreach (var coco in colorManager.GetAll().Data)
         {
-            Console.WriteLine(coco.ColorId + " " + coco.ColorName);
+            Console.WriteLine(coco.Id + " " + coco.ColorName);
         }
     }
 

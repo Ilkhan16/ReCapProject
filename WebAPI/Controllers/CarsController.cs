@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbybrandid")]
-        public IActionResult GetByBrandId(int brandId)
+        public IActionResult GetByBrandId([FromForm] int brandId)
         {
             var result = _carService.GetByBrandId(brandId);
             if (result.Success)
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbycolorid")]
-        public IActionResult GetByColorId(int colorId)
+        public IActionResult GetByColorId([FromForm] int colorId)
         {
             var result = _carService.GetByColorId(colorId);
             if (result.Success)

@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
             _customerService = customerService;
         }
         [HttpPost("add")]
-        public IActionResult Add(Customer customer)
+        public IActionResult Add([FromForm] Customer customer)
         {
             var result = _customerService.Add(customer);
             if (result.Success)
@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpDelete("remove")]
-        public IActionResult Remove(Customer customer)
+        public IActionResult Remove([FromForm] Customer customer)
         {
             var result = _customerService.Delete(customer);
             if (result.Success)
@@ -36,7 +36,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPut("update")]
-        public IActionResult Update(Customer customer)
+        public IActionResult Update([FromForm] Customer customer)
         {
             var result = _customerService.Update(customer);
             if (result.Success)
@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById([FromForm] int id)
         {
             var result = _customerService.GetById(id);
             if (result.Success)

@@ -19,22 +19,22 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
+                             on c.ColorId equals co.Id
 
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 BrandId = b.BrandId,
+                                 BrandId = b.Id,
                                  CarName = c.CarName,
-                                 ColorId = co.ColorId,
+                                 ColorId = co.Id,
                                  Description = c.Description,
-                                 ImagePath = (from m in context.CarImages where m.CarId == c.CarId select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }
@@ -46,22 +46,22 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
-                             where b.BrandId == brandId
+                             on c.ColorId equals co.Id
+                             where b.Id == brandId
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 BrandId = b.BrandId,
+                                 BrandId = b.Id,
                                  CarName = c.CarName,
-                                 ColorId = co.ColorId,
+                                 ColorId = co.Id,
                                  Description = c.Description,
-                                 ImagePath = (from m in context.CarImages where m.CarId == c.CarId select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }
@@ -73,22 +73,22 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
-                             where c.CarId == carId
+                             on c.ColorId equals co.Id
+                             where c.Id == carId
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 BrandId = b.BrandId,
+                                 BrandId = b.Id,
                                  CarName = c.CarName,
-                                 ColorId = co.ColorId,
+                                 ColorId = co.Id,
                                  Description = c.Description,
-                                 ImagePath = (from m in context.CarImages where m.CarId == c.CarId select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }
@@ -100,22 +100,22 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
-                             where co.ColorId == colorId & b.BrandId == brandId
+                             on c.ColorId equals co.Id
+                             where co.Id == colorId & b.Id == brandId
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 BrandId = b.BrandId,
+                                 BrandId = b.Id,
                                  CarName = c.CarName,
-                                 ColorId = co.ColorId,
+                                 ColorId = co.Id,
                                  Description = c.Description,
-                                 ImagePath = (from m in context.CarImages where m.CarId == c.CarId select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }
@@ -127,22 +127,22 @@ namespace DataAccess.Concrete.EntityFramework
             {
                 var result = from c in context.Cars
                              join b in context.Brands
-                             on c.BrandId equals b.BrandId
+                             on c.BrandId equals b.Id
                              join co in context.Colors
-                             on c.ColorId equals co.ColorId
+                             on c.ColorId equals co.Id
                              where c.ColorId == colorId
                              select new CarDetailDto
                              {
-                                 CarId = c.CarId,
+                                 CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 BrandId = b.BrandId,
+                                 BrandId = b.Id,
                                  CarName = c.CarName,
-                                 ColorId = co.ColorId,
+                                 ColorId = co.Id,
                                  Description = c.Description,
-                                 ImagePath = (from m in context.CarImages where m.CarId == c.CarId select m.ImagePath).FirstOrDefault()
+                                 ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
                              };
                 return result.ToList();
             }

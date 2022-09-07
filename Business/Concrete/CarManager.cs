@@ -26,17 +26,17 @@ public class CarManager : ICarService
 
     public IDataResult<Car> GetById(int id)
     {
-        return new SuccessDataResult<Car>(_carDal.Get(car => car.CarId == id), Messages.Listed);
+        return new SuccessDataResult<Car>(_carDal.Get(car => car.Id == id), Messages.Listed);
     }
 
     public IDataResult<List<Car>> GetByBrandId(int brandId)
     {
-        return new SuccessDataResult<List<Car>>(_carDal.GetAll(car => car.BrandId == brandId).ToList(), Messages.Listed);
+        return new SuccessDataResult<List<Car>>(_carDal.GetAll(car => car.Id == brandId).ToList(), Messages.Listed);
     }
 
     public IDataResult<List<Car>> GetByColorId(int colorId)
     {
-        return new SuccessDataResult<List<Car>>( _carDal.GetAll(car => car.ColorId == colorId).ToList(), Messages.Listed);
+        return new SuccessDataResult<List<Car>>( _carDal.GetAll(car => car.Id == colorId).ToList(), Messages.Listed);
     }
 
     public IDataResult<List<CarDetailDto>> GetCarDetails()

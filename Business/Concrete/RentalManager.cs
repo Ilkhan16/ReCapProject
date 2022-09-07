@@ -23,7 +23,7 @@ public class RentalManager:IRentalService
 
     public IDataResult<Rental> GetById(int id)
     {
-        return new SuccessDataResult<Rental>(_rentalDal.Get(rental => rental.RentalId == id), Messages.Listed);
+        return new SuccessDataResult<Rental>(_rentalDal.Get(rental => rental.Id == id), Messages.Listed);
     }
 
     public IResult Add(Rental rental)

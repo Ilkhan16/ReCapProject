@@ -16,7 +16,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("add")]
-        public IActionResult Add(User user)
+        public IActionResult Add([FromForm] User user)
         {
             var result = _userService.Add(user);
             if (result.Success)
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpDelete("remove")]
-        public IActionResult Remove(User user)
+        public IActionResult Remove([FromForm] User user)
         {
             var result = _userService.Delete(user);
             if (result.Success)
@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update(User user)
+        public IActionResult Update([FromForm] User user)
         {
             var result = _userService.Update(user);
             if (result.Success)
@@ -52,7 +52,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById([FromForm] int id)
         {
             var result = _userService.GetById(id);
             if (result.Success)

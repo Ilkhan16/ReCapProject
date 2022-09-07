@@ -25,7 +25,7 @@ public class UserManager:IUserService
 
     public IDataResult<User> GetById(int id)
     {
-        return new SuccessDataResult<User>(_userDal.Get(user => user.UserId == id), Messages.Listed);
+        return new SuccessDataResult<User>(_userDal.Get(user => user.Id == id), Messages.Listed);
     }
     [ValidationAspect(typeof(UserValidator))]
     public IResult Add(User user)

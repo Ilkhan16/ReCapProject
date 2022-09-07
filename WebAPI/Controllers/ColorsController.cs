@@ -17,7 +17,7 @@ namespace WebAPI.Controllers
 
 
         [HttpPost("add")]
-        public IActionResult Add(Color color)
+        public IActionResult Add([FromForm] Color color)
         {
             var result = _colorService.Add(color);
             if (result.Success)
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpDelete("remove")]
-        public IActionResult Remove(Color color)
+        public IActionResult Remove([FromForm] Color color)
         {
             var result = _colorService.Delete(color);
             if (result.Success)
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPut("update")]
-        public IActionResult Update(Color color)
+        public IActionResult Update([FromForm] Color color)
         {
             var result = _colorService.Update(color);
             if (result.Success)
@@ -48,7 +48,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpGet("getbyid")]
-        public IActionResult GetById(int id)
+        public IActionResult GetById([FromForm] int id)
         {
             var result = _colorService.GetById(id);
             if (result.Success)

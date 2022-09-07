@@ -23,7 +23,7 @@ public class ColorManager:IColorService
 
     public IDataResult<Color> GetById(int id)
     {
-        return new SuccessDataResult<Color>(_colorDal.Get(color => color.ColorId == id), Messages.Listed);
+        return new SuccessDataResult<Color>(_colorDal.Get(color => color.Id == id), Messages.Listed);
     }
 
     public IResult Add(Color color)
