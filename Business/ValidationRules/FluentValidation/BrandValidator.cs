@@ -1,13 +1,12 @@
 ﻿using Entities.Concrete;
 using FluentValidation;
 
-namespace Business.ValidationRules.FluentValidation
+namespace Business.ValidationRules.FluentValidation;
+
+public class BrandValidator:AbstractValidator<Brand>
 {
-    public class BrandValidator:AbstractValidator<Brand>
+    public BrandValidator()
     {
-        public BrandValidator()
-        {
-            RuleFor(brand => brand.BrandName).NotEmpty().WithMessage("Brand name is required.");
-        }
+        RuleFor(brand => brand.BrandName).NotEmpty().WithMessage("Brand name is required.");
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace Core.Utilities.Helpers.GuidHelperr
+﻿namespace Core.Utilities.Helpers.GuidHelperr;
+
+public class GuidHelper
 {
-    public class GuidHelper
+    public static string CreateGuid()
     {
-        public static string CreateGuid()
-        {
-            return Guid.NewGuid().ToString();
-        }
+        return Guid.NewGuid().ToString();
     }
 }

@@ -2,72 +2,71 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ColorsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ColorsController : ControllerBase
+    IColorService _colorService;
+
+    public ColorsController(IColorService colorService)
     {
-        IColorService _colorService;
-
-        public ColorsController(IColorService colorService)
-        {
-            _colorService = colorService;
-        }
+        _colorService = colorService;
+    }
 
 
-        [HttpPost("add")]
-        public IActionResult Add([FromForm] Color color)
+    [HttpPost("add")]
+    public IActionResult Add([FromForm] Color color)
+    {
+        var result = _colorService.Add(color);
+        if (result.Success)
         {
-            var result = _colorService.Add(color);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+            return Ok(result);
+        }
 
-            return BadRequest(result);
-        }
-        [HttpDelete("remove")]
-        public IActionResult Remove([FromForm] Color color)
+        return BadRequest(result);
+    }
+    [HttpDelete("remove")]
+    public IActionResult Remove([FromForm] Color color)
+    {
+        var result = _colorService.Delete(color);
+        if (result.Success)
         {
-            var result = _colorService.Delete(color);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return Ok(result);
         }
-        [HttpPut("update")]
-        public IActionResult Update([FromForm] Color color)
+        return BadRequest(result);
+    }
+    [HttpPut("update")]
+    public IActionResult Update([FromForm] Color color)
+    {
+        var result = _colorService.Update(color);
+        if (result.Success)
         {
-            var result = _colorService.Update(color);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return Ok(result);
         }
-        [HttpGet("getbyid")]
-        public IActionResult GetById([FromForm] int id)
+        return BadRequest(result);
+    }
+    [HttpGet("getbyid")]
+    public IActionResult GetById([FromForm] int id)
+    {
+        var result = _colorService.GetById(id);
+        if (result.Success)
         {
-            var result = _colorService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+            return Ok(result);
+        }
 
-            return BadRequest(result);
-        }
-        [HttpGet("getall")]
-        public IActionResult GetAll()
+        return BadRequest(result);
+    }
+    [HttpGet("getall")]
+    public IActionResult GetAll()
+    {
+        var result = _colorService.GetAll();
+        if (result.Success)
         {
-            var result = _colorService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
+            return Ok(result);
         }
+
+        return BadRequest(result);
     }
 }

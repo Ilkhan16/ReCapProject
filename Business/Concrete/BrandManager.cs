@@ -23,9 +23,9 @@ public class BrandManager:IBrandService
         return new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.BrandListed);
     }
 
-    public IDataResult<Brand> GetById(int id)
+    public IDataResult<Brand?> GetById(int id)
     {
-        return new SuccessDataResult<Brand>(_brandDal.Get(brand => brand.Id == id), Messages.Listed);
+        return new SuccessDataResult<Brand?>(_brandDal.Get(brand => brand.Id == id), Messages.Listed);
 
     }
     [ValidationAspect(typeof(BrandValidator))]

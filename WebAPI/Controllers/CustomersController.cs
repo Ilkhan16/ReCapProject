@@ -2,70 +2,69 @@
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers
+namespace WebAPI.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CustomersController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CustomersController : ControllerBase
+    ICustomerService _customerService;
+
+    public CustomersController(ICustomerService customerService)
     {
-        ICustomerService _customerService;
+        _customerService = customerService;
+    }
+    [HttpPost("add")]
+    public IActionResult Add([FromForm] Customer customer)
+    {
+        var result = _customerService.Add(customer);
+        if (result.Success)
+        {
+            return Ok(result);
+        }
 
-        public CustomersController(ICustomerService customerService)
+        return BadRequest(result);
+    }
+    [HttpDelete("remove")]
+    public IActionResult Remove([FromForm] Customer customer)
+    {
+        var result = _customerService.Delete(customer);
+        if (result.Success)
         {
-            _customerService = customerService;
+            return Ok(result);
         }
-        [HttpPost("add")]
-        public IActionResult Add([FromForm] Customer customer)
+        return BadRequest(result);
+    }
+    [HttpPut("update")]
+    public IActionResult Update([FromForm] Customer customer)
+    {
+        var result = _customerService.Update(customer);
+        if (result.Success)
         {
-            var result = _customerService.Add(customer);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
+            return Ok(result);
+        }
+        return BadRequest(result);
+    }
+    [HttpGet("getbyid")]
+    public IActionResult GetById([FromForm] int id)
+    {
+        var result = _customerService.GetById(id);
+        if (result.Success)
+        {
+            return Ok(result);
+        }
 
-            return BadRequest(result);
-        }
-        [HttpDelete("remove")]
-        public IActionResult Remove([FromForm] Customer customer)
+        return BadRequest(result);
+    }
+    [HttpGet("getall")]
+    public IActionResult GetAll()
+    {
+        var result = _customerService.GetAll();
+        if (result.Success)
         {
-            var result = _customerService.Delete(customer);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
+            return Ok(result);
         }
-        [HttpPut("update")]
-        public IActionResult Update([FromForm] Customer customer)
-        {
-            var result = _customerService.Update(customer);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-        [HttpGet("getbyid")]
-        public IActionResult GetById([FromForm] int id)
-        {
-            var result = _customerService.GetById(id);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
 
-            return BadRequest(result);
-        }
-        [HttpGet("getall")]
-        public IActionResult GetAll()
-        {
-            var result = _customerService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-
-            return BadRequest(result);
-        }
+        return BadRequest(result);
     }
 }

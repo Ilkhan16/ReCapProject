@@ -40,4 +40,11 @@ public static class Messages
     public static string CarImagesUpdated = "Car Image updateed.";
     public static string CarImagesListed = "Car Image listed.";
     public static string CarImageCountExceeded = "The car cannot have more than 5 pictures.";
+    //--------------------------------------------------
+    public static string UserNotFound = "User not found";
+    public static string PasswordError = "Incorrect username and/or password. Please try again.";
+    public static string SuccessfulLogin = "Successfully logged in.";
+    public static string UserRegistered = "Successfully registered";
+    public static string AccessTokenCreated = "Token Created";
+    public static string UserAlreadyExists = "User is already registered, Please enter a different Mail";
 }

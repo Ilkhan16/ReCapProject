@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Core.Entities.Abstract;
 using Core.Utilites.Results.Abstract;
 
 namespace Core.Business.Abstract;

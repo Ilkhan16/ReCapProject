@@ -1,7 +1,6 @@
-﻿namespace Business.Constants
+﻿namespace Business.Constants;
+
+public class PathConstants
 {
-    public class PathConstants
-    {
-        public static string ImagesPath = "wwwroot\\Images\\";
-    }
+    public static string ImagesPath = "wwwroot\\Images\\";
 }
