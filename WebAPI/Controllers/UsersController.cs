@@ -93,7 +93,8 @@ public class UsersController : ControllerBase
         var result = _userService.GetAll();
         if (result.Success)
         {
-            return Ok(result);
+            var result = _userService.Update(user);
+            return result.Success ? Ok(result) : BadRequest(result);
         }
 
         return BadRequest(result);
