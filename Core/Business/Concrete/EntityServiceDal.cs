@@ -1,7 +1,7 @@
 ﻿using Core.Business.Abstract;
 using Core.Entities.Abstract;
-using Core.Utilites.Results.Abstract;
-using Core.Utilites.Results.Concrete;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 
 namespace Core.Business.Concrete;
 

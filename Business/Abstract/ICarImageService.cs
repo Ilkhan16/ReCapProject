@@ -1,4 +1,4 @@
-﻿using Core.Utilites.Results.Abstract;
+﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 

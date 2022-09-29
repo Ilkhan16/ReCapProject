@@ -7,7 +7,6 @@ public class CarValidator:AbstractValidator<Car>
 {
     public CarValidator()
     {
-        RuleFor(car => car.Id).Empty();
         RuleFor(car => car.ColorId).NotEmpty().WithMessage("Enter color id");
         RuleFor(car => car.BrandId).NotEmpty().WithMessage("Enter brand id");
         RuleFor(car => car.CarName).NotEmpty().WithMessage("Enter car name");

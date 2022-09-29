@@ -4,10 +4,10 @@ using Business.Constants;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
-using Core.Utilites.Business;
-using Core.Utilites.Results.Abstract;
-using Core.Utilites.Results.Concrete;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using Core.Utilities.Helpers.FileHelper;
+using Core.Utilities.Business;
 
 namespace Business.Concrete;
 
@@ -29,7 +29,7 @@ public class CarImageManager : ICarImageService
             return result;
         }
         carImage.ImagePath = _fileHelper.Upload(formFile, PathConstants.ImagesPath);
-        carImage.Date = DateTime.Now;
+        carImage.Date = DateTime.UtcNow;
         _carImageDal.Add(carImage);
         return new SuccessResult(Messages.CarImagesAdded);
     }

@@ -1,10 +1,10 @@
 ﻿using Business.Abstract;
 using Business.Constans;
 using Core.Entities.Concrete;
-using Core.Utilites.Results.Abstract;
-using Core.Utilites.Results.Concrete;
-using Core.Utilites.Security.Hashing;
-using Core.Utilites.Security.JWT;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
+using Core.Utilities.Security.Hashing;
+using Core.Utilities.Security.JWT;
 using Entities.DTOs;
 
 namespace Business.Concrete;
@@ -34,27 +34,28 @@ public class AuthManager : IAuthService
             Status = true
         };
         _userService.Add(user);
-        return new SuccessDataResult<User>(user, Messages.
-            UserRegistered);
+        return new SuccessDataResult<User>(user, Messages.UserRegistered);
     }
 
     public IDataResult<User> Login(UserForLoginDto userForLoginDto)
     {
         var userToCheck = _userService.GetByMail(userForLoginDto.Email);
-        if ((userToCheck==null))
+        if (userToCheck.Data == null)
         {
             return new ErrorDataResult<User>(Messages.UserNotFound);
         }
+
         if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, userToCheck.Data.PasswordHash, userToCheck.Data.PasswordSalt))
         {
             return new ErrorDataResult<User>(Messages.PasswordError);
         }
+
         return new SuccessDataResult<User>(userToCheck.Data, Messages.SuccessfulLogin);
     }
 
     public IResult UserExists(string email)
     {
-        if (_userService.GetByMail(email) != null)
+        if (_userService.GetByMail(email).Data != null)
         {
             return new ErrorResult(Messages.UserAlreadyExists);
         }
@@ -63,7 +64,7 @@ public class AuthManager : IAuthService
 
     public IDataResult<AccessToken> CreateAccessToken(User user)
     {
-        var claims = _userService.GetOperationClaims(user);
+        var claims = _userService.GetClaims(user);
         var accessToken = _tokenHelper.CreateToken(user, claims.Data);
         return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
     }

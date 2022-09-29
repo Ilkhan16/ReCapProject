@@ -2,8 +2,8 @@
 using Business.Constans;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.AutoFac.Validation;
-using Core.Utilites.Results.Abstract;
-using Core.Utilites.Results.Concrete;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -19,15 +19,11 @@ public class BrandManager:IBrandService
     }
 
     public IDataResult<List<Brand>> GetAll()
-    {
-        return new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.BrandListed);
-    }
+        => new SuccessDataResult<List<Brand>>( _brandDal.GetAll(),Messages.BrandListed);
 
     public IDataResult<Brand?> GetById(int id)
-    {
-        return new SuccessDataResult<Brand?>(_brandDal.Get(brand => brand.Id == id), Messages.Listed);
+        => new SuccessDataResult<Brand?>(_brandDal.Get(brand => brand.Id == id), Messages.Listed);
 
-    }
     [ValidationAspect(typeof(BrandValidator))]
     public IResult Add(Brand brand)
     {

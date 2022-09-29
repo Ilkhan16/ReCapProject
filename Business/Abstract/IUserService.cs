@@ -1,16 +1,16 @@
 ﻿using Core.Entities.Concrete;
-using Core.Utilites.Results.Abstract;
+using Core.Utilities.Results.Abstract;
 
 namespace Business.Abstract
 {
     public interface IUserService
     {
-        IDataResult<List<OperationClaim>> GetOperationClaims(User user);
-        IDataResult<User> GetByMail(string email);
-        IDataResult<User> GetById(int id);
         IDataResult<List<User>> GetAll();
+        IDataResult<User> GetById(int id);
+        IDataResult<List<OperationClaim>> GetClaims(User user);
+        IDataResult<User> GetByMail(string email);
         IResult Add(User user);
-        IResult Delete(User user);
         IResult Update(User user);
+        IResult Delete(User user);
     }
 }

@@ -2,101 +2,72 @@
 using Core.Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebAPI.Controllers;
-
-[Route("api/[controller]")]
-[ApiController]
-public class UsersController : ControllerBase
+namespace WebAPI.Controllers
 {
-    IUserService _userService;
-
-    public UsersController(IUserService userService)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UsersController : ControllerBase
     {
-        _userService = userService;
-    }
+        private readonly IUserService _userService;
 
-    [HttpPost("add")]
-    public IActionResult Add([FromForm] User user)
-    {
-        var result = _userService.Add(user);
-        if (result.Success)
+        public UsersController(IUserService userService)
         {
-            return Ok(result);
+            _userService = userService;
         }
 
-        return BadRequest(result);
-    }
-
-    [HttpDelete("remove")]
-    public IActionResult Remove([FromForm] User user)
-    {
-        var result = _userService.Delete(user);
-        if (result.Success)
+        [HttpGet("getall")]
+        public IActionResult GetAll()
         {
-            return Ok(result);
+            var result = _userService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
-        return BadRequest(result);
-    }
-
-    [HttpPut("update")]
-    public IActionResult Update([FromForm] User user)
-    {
-        var result = _userService.Update(user);
-        if (result.Success)
+        [HttpGet("getbyid")]
+        public IActionResult GetById(int id)
         {
-            return Ok(result);
+            var result = _userService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
-        return BadRequest(result);
-    }
-
-    [HttpGet("getbyid")]
-    public IActionResult GetById([FromForm] int id)
-    {
-        var result = _userService.GetById(id);
-        if (result.Success)
+        [HttpPost("add")]
+        public IActionResult Add(User user)
         {
-            return Ok(result);
+            var result = _userService.Add(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
-        return BadRequest(result);
-    }
-
-    [HttpGet("getbymail")]
-    public IActionResult GetByMail([FromForm] string mail)
-    {
-        var result = _userService.GetByMail(mail);
-        if (result.Success)
+        [HttpPost("delete")]
+        public IActionResult Delete(User user)
         {
-            return Ok(result);
+            var result = _userService.Delete(user);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
 
-        return BadRequest(result);
-    }
-
-    [HttpGet("getoperationclaims")]
-    public IActionResult GetOperationClaims([FromForm] User user)
-    {
-        var result = _userService.GetOperationClaims(user);
-        if (result.Success)
-        {
-            return Ok(result);
-        }
-
-        return BadRequest(result);
-    }
-
-    [HttpGet("getall")]
-    public IActionResult GetAll()
-    {
-        var result = _userService.GetAll();
-        if (result.Success)
+        [HttpPost("update")]
+        public IActionResult Update(User user)
         {
             var result = _userService.Update(user);
-            return result.Success ? Ok(result) : BadRequest(result);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
-
-        return BadRequest(result);
     }
 }

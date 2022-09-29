@@ -1,7 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constans;
-using Core.Utilites.Results.Abstract;
-using Core.Utilites.Results.Concrete;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
@@ -17,14 +17,10 @@ public class RentalManager:IRentalService
     }
 
     public IDataResult<List<Rental>> GetAll()
-    {
-        return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
-    }
+        => new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalListed);
 
     public IDataResult<Rental> GetById(int id)
-    {
-        return new SuccessDataResult<Rental>(_rentalDal.Get(rental => rental.Id == id), Messages.Listed);
-    }
+        => new SuccessDataResult<Rental>(_rentalDal.Get(rental => rental.Id == id), Messages.Listed);
 
     public IResult Add(Rental rental)
     {
@@ -40,13 +36,13 @@ public class RentalManager:IRentalService
 
     public IResult Update(Rental rental)
     {
-        _rentalDal.Add(rental);
+        _rentalDal.Update(rental);
         return new SuccessResult(Messages.RentalUpdated);
     }
 
     public IResult Delete(Rental rental)
     {
-        _rentalDal.Add(rental);
+        _rentalDal.Delete(rental);
         return new SuccessResult(Messages.RentalRemoved);
     }
 }

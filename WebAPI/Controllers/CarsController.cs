@@ -59,7 +59,7 @@ public class CarsController : ControllerBase
     }
 
     [HttpGet("getbybrandid")]
-    public IActionResult GetByBrandId([FromForm] int brandId)
+    public IActionResult GetByBrandId(int brandId)
     {
         var result = _carService.GetByBrandId(brandId);
         if (result.Success)
@@ -71,7 +71,7 @@ public class CarsController : ControllerBase
     }
 
     [HttpGet("getbycolorid")]
-    public IActionResult GetByColorId([FromForm] int colorId)
+    public IActionResult GetByColorId(int colorId)
     {
         var result = _carService.GetByColorId(colorId);
         if (result.Success)

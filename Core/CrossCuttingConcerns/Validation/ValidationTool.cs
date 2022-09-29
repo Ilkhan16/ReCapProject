@@ -1,17 +1,17 @@
 ﻿using FluentValidation;
-using ValidationException = System.ComponentModel.DataAnnotations.ValidationException;
 
-namespace Core.CrossCuttingConcerns.Validation;
-
-public static class ValidationTool
+namespace Core.CrossCuttingConcerns.Validation
 {
-    public static void Validate(IValidator validator,object entity)
+    public static class ValidationTool
     {
-        var context = new ValidationContext<object>(entity);
-        var result = validator.Validate(context);
-        if (!result.IsValid)
+        public static void Validate(IValidator validator, object entity)
         {
-            throw new ValidationException(result.Errors.ToString());
+            var context = new ValidationContext<object>(entity);
+            var result = validator.Validate(context);
+            if (!result.IsValid)
+            {
+                throw new ValidationException(result.Errors);
+            }
         }
     }
 }
