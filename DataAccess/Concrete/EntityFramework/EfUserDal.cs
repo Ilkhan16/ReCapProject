@@ -10,13 +10,13 @@ public class EfUserDal : EfEntityRepositoryBase<User, ReCapDB>, IUserDal
     {
         using (var context = new ReCapDB())
         {
-            var result = from operationClaim in context.OperationClaims
-                         join userOperationClaim in context.UserOperationClaims
-                             on operationClaim.Id equals userOperationClaim.OperationClaimId
-                         where userOperationClaim.UserId == user.Id
-                         select new OperationClaim { Id = operationClaim.Id, Name = operationClaim.Name };
+            var result = from OperationClaim in context.OperationClaims
+                         join UserOperationClaim in context.UserOperationClaims
+                         on OperationClaim.Id equals UserOperationClaim.Id
+                         where UserOperationClaim.UserId == user.Id
+                         select new OperationClaim { Id = OperationClaim.Id, Name = OperationClaim.Name };
             return result.ToList();
-
         }
     }
 }
+

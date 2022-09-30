@@ -2,12 +2,13 @@
 
 namespace Core.Utilities.Interceptors
 {
-    public abstract class MethodInterception : MethodInterceptionBaseAttribute
+    public class MethodInterception : MethodInterceptionBaseAttribute
     {
         protected virtual void OnBefore(IInvocation invocation) { }
-        protected virtual void OnAfter(IInvocation invocation) { }
-        protected virtual void OnException(IInvocation invocation, System.Exception e) { }
+        protected virtual void OnExpection(IInvocation invocation, Exception e) { }
         protected virtual void OnSuccess(IInvocation invocation) { }
+        protected virtual void OnAfter(IInvocation invocation) { }
+
         public override void Intercept(IInvocation invocation)
         {
             var isSuccess = true;
@@ -19,7 +20,7 @@ namespace Core.Utilities.Interceptors
             catch (Exception e)
             {
                 isSuccess = false;
-                OnException(invocation, e);
+                OnExpection(invocation, e);
                 throw;
             }
             finally
@@ -27,6 +28,7 @@ namespace Core.Utilities.Interceptors
                 if (isSuccess)
                 {
                     OnSuccess(invocation);
+
                 }
             }
             OnAfter(invocation);

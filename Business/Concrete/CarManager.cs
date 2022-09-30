@@ -22,7 +22,6 @@ public class CarManager : ICarService
         _carDal = carDal;
     }
 
-    [SecuredOperation("Admin")]
     [CacheAspect]
     public IDataResult<List<Car>> GetAll()
         => new SuccessDataResult<List<Car>>(_carDal.GetAll() ,Messages.CarsListed);
@@ -44,7 +43,7 @@ public class CarManager : ICarService
     public IDataResult<List<CarDetailDto>> GetCarDetails()
         => new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails(),Messages.CarsListed);
 
-    //[SecuredOperation("Admin")]
+    [SecuredOperation("Admin")]
     [TransactionScopeAspect]
     [CacheRemoveAspect("ICarService.Get")]
     [ValidationAspect(typeof(CarValidator))]

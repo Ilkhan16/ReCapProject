@@ -1,11 +1,14 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.Hashing;
 using Core.Utilities.Security.JWT;
 using Entities.DTOs;
+using System.ComponentModel.DataAnnotations;
 
 namespace Business.Concrete;
 
@@ -19,7 +22,7 @@ public class AuthManager : IAuthService
         _userService = userService;
         _tokenHelper = tokenHelper;
     }
-
+    [ValidationAspect(typeof(AuthValidator))]
     public IDataResult<User> Register(UserForRegisterDto userForRegisterDto, string password)
     {
         byte[] passwordHash, passwordSalt;
