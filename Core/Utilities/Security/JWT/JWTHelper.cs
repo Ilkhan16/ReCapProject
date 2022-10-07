@@ -22,7 +22,7 @@ public class JwtHelper : ITokenHelper
     }
     public AccessToken CreateToken(User user, List<OperationClaim> operationClaims)
     {
-        _accessTokenExpiration = DateTime.UtcNow.AddMinutes(_tokenOptions.AccessTokenExpiration);
+        _accessTokenExpiration = DateTime.Now.AddMinutes(_tokenOptions.AccessTokenExpiration);
         var securityKey = SecurityKeyHelper.CreateSecurityKey(_tokenOptions.SecurityKey);
         var signingCredentials = SigningCredentialsHelper.CreateSigningCredentials(securityKey);
         var jwt = CreateJwtSecurityToken(_tokenOptions, user, signingCredentials, operationClaims);

@@ -1,12 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constans;
+using Core.Aspect.Autofac.Caching;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace Business.Concrete;
-
+[PerformanceAspect(5)]
 public class CustomerManager:ICustomerService
 {
     ICustomerDal _customerDal;
@@ -20,7 +21,7 @@ public class CustomerManager:ICustomerService
     {
         return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomerListed);
     }
-
+    [CacheAspect]
     public IDataResult<Customer> GetById(int id)
     {
         return new SuccessDataResult<Customer>(_customerDal.Get(customer => customer.Id==id), Messages.Listed);

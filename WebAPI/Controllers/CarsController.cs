@@ -81,6 +81,19 @@ public class CarsController : ControllerBase
 
         return BadRequest(result);
     }
+
+    [HttpGet("getcardetails")]
+    public IActionResult GetCarDetails()
+    {
+        var result = _carService.GetCarDetails();
+        if (result.Success)
+        {
+            return Ok(result);
+        }
+
+        return BadRequest(result);
+    }
+
     [HttpGet("getall")]
     public IActionResult GetAll()
     {

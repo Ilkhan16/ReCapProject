@@ -68,10 +68,7 @@ public class CarImageManager : ICarImageService
         return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(),Messages.CarImagesListed);
     }
 
-
-
-
-    //--------------------------------------Rules--------------------------------------\\
+    #region Rules
     private IResult CheckIfCarImageLimit(int carId)
     {
         var result = _carImageDal.GetAll(c => c.CarId == carId).Count;
@@ -85,7 +82,7 @@ public class CarImageManager : ICarImageService
     {
 
         List<CarImage> carImage = new List<CarImage>();
-        carImage.Add(new CarImage { CarId = carId, Date = DateTime.Now, ImagePath = "Default.png" });
+        carImage.Add(new CarImage { CarId = carId, Date = DateTime.UtcNow, ImagePath = "Default.png" });
         return new SuccessDataResult<List<CarImage>>(carImage);
     }
     private IResult CheckCarImage(int carId)
@@ -97,4 +94,5 @@ public class CarImageManager : ICarImageService
         }
         return new ErrorResult();
     }
+    #endregion
 }

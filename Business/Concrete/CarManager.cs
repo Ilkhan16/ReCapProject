@@ -39,11 +39,11 @@ public class CarManager : ICarService
     public IDataResult<List<Car>> GetByColorId(int colorId)
         => new SuccessDataResult<List<Car>>( _carDal.GetAll(car => car.ColorId == colorId)
                                                     .ToList(), Messages.Listed);
-
+    [CacheAspect]
     public IDataResult<List<CarDetailDto>> GetCarDetails()
         => new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetails(),Messages.CarsListed);
 
-    [SecuredOperation("Admin")]
+    [SecuredOperation("Car.all,Admin")]
     [TransactionScopeAspect]
     [CacheRemoveAspect("ICarService.Get")]
     [ValidationAspect(typeof(CarValidator))]
@@ -57,18 +57,27 @@ public class CarManager : ICarService
         _carDal.Add(car);
         return new SuccessResult(Messages.CarAdded);
     }
+
+    [SecuredOperation("Car.all,Admin")]
+    [TransactionScopeAspect]
     [CacheRemoveAspect("ICarService.Get")]
+    [ValidationAspect(typeof(CarValidator))]
     public IResult Update(Car car)
     {
         _carDal.Update(car);
         return new SuccessResult(Messages.CarUpdated);
     }
+
+    [SecuredOperation("Car.all,Admin")]
+    [TransactionScopeAspect]
     [CacheRemoveAspect("ICarService.Get")]
     public IResult Delete(Car car)
     {
         _carDal.Delete(car);
         return new SuccessResult(Messages.CarRemoved);
     }
+
+    #region Rules
     private IResult CheckIfCarNameExists(string carname)
     {
         var checkcar = _carDal.GetAll(car => car.CarName == carname).Any();
@@ -79,5 +88,6 @@ public class CarManager : ICarService
 
         return new SuccessResult();
     }
-    
+    #endregion
+
 }
