@@ -63,6 +63,7 @@ public static class Messages
     public static string AccessTokenCreated = "Token Created";
     public static string UserAlreadyExists = "User is already registered, Please enter a different Mail";
     public static string AuthorizationDenied = "You do not have the required permission";
-    public static string CarNameAlreadyExists = "Car name already in use, enter a different name"; 
+    public static string CarNameAlreadyExists = "Car name already in use, enter a different name";
+    public static string DescriptionDefault = "Rental Car";
     #endregion
 }

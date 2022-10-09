@@ -16,7 +16,7 @@ public class CustomerManager:ICustomerService
     {
         _customerDal = customerDal;
     }
-
+    [CacheAspect]
     public IDataResult<List<Customer>> GetAll()
     {
         return new SuccessDataResult<List<Customer>>(_customerDal.GetAll(),Messages.CustomerListed);

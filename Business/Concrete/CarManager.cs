@@ -49,7 +49,7 @@ public class CarManager : ICarService
     [ValidationAspect(typeof(CarValidator))]
     public IResult Add(Car car)
     {
-        IResult result = BusinessRules.Run(CheckIfCarNameExists(carname: car.CarName));
+        IResult result = BusinessRules.Run(CheckIfCarNameExists(carname: car.CarName), CheckIfCarDescriptionIsNull(car));
         if (result != null)
         {
             return result;
@@ -88,6 +88,17 @@ public class CarManager : ICarService
 
         return new SuccessResult();
     }
+
+    private IResult CheckIfCarDescriptionIsNull(Car car)
+    {
+        if(car.Description==null)
+        {
+            car.Description = Messages.DescriptionDefault;
+            return new SuccessResult();
+        }
+        return new SuccessResult();
+    }
+
     #endregion
 
 }
