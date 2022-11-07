@@ -27,17 +27,18 @@ public class CarManager : ICarService
         => new SuccessDataResult<List<Car>>(_carDal.GetAll() ,Messages.CarsListed);
 
     [CacheAspect]
-    public IDataResult<Car> GetById(int id)
-        => new SuccessDataResult<Car>(_carDal.Get(car => car.Id == id), Messages.Listed);
+    public IDataResult<List<CarDetailDto>> GetById(int id)
+        => new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByCarId(id)
+            .ToList(), Messages.Listed);
 
     [CacheAspect]
-    public IDataResult<List<Car>> GetByBrandId(int brandId)
-        => new SuccessDataResult<List<Car>>(_carDal.GetAll(car => car.BrandId == brandId)
+    public IDataResult<List<CarDetailDto>> GetByBrandId(int brandId)
+        => new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetailsByBrandId(brandId)
                                                    .ToList(), Messages.Listed);
 
     [CacheAspect]
-    public IDataResult<List<Car>> GetByColorId(int colorId)
-        => new SuccessDataResult<List<Car>>( _carDal.GetAll(car => car.ColorId == colorId)
+    public IDataResult<List<CarDetailDto>> GetByColorId(int colorId)
+        => new SuccessDataResult<List<CarDetailDto>>( _carDal.GetCarDetailsByColorId(colorId)
                                                     .ToList(), Messages.Listed);
     [CacheAspect]
     public IDataResult<List<CarDetailDto>> GetCarDetails()

@@ -25,7 +25,7 @@ public class BrandManager:IBrandService
 
     [CacheAspect]
     public IDataResult<Brand?> GetById(int id)
-        => new SuccessDataResult<Brand?>(_brandDal.Get(brand => brand.Id == id), Messages.Listed);
+        => new SuccessDataResult<Brand?>(_brandDal.Get(brand => brand.BrandId == id), Messages.Listed);
 
     [ValidationAspect(typeof(BrandValidator))]
     [SecuredOperation("Brand.all,Admin")]

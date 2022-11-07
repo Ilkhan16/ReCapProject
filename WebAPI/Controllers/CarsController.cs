@@ -46,10 +46,10 @@ public class CarsController : ControllerBase
         return BadRequest(result);
     }
 
-    [HttpGet("getbyid")]
-    public IActionResult GetById(int id)
+    [HttpGet("getbyid")] 
+    public IActionResult GetById(int carId)
     {
-        var result = _carService.GetById(id);
+        var result = _carService.GetById(carId);
         if (result.Success)
         {
             return Ok(result);
@@ -60,7 +60,7 @@ public class CarsController : ControllerBase
 
     [HttpGet("getbybrandid")]
     public IActionResult GetByBrandId(int brandId)
-    {
+        {
         var result = _carService.GetByBrandId(brandId);
         if (result.Success)
         {

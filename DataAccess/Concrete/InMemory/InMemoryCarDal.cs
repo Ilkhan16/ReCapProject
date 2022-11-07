@@ -15,22 +15,22 @@ public class InMemoryCarDal : ICarDal
         {
             new Car
             {
-                Id = 1, BrandId = 1, ColorId = 2, DailyPrice = 2000000, Description = "Tesla v8",
+                CarId = 1, BrandId = 1, ColorId = 2, DailyPrice = 2000000, Description = "Tesla v8",
                 ModelYear = 2022,
             },
             new Car
             {
-                Id = 2, BrandId = 1, ColorId = 6, DailyPrice = 230000, Description = "Honda A12",
+                CarId = 2, BrandId = 1, ColorId = 6, DailyPrice = 230000, Description = "Honda A12",
                 ModelYear = 1997
             },
             new Car
             {
-                Id = 3, BrandId = 2, ColorId = 2, DailyPrice = 5000000, Description = "Tesla v12",
+                CarId = 3, BrandId = 2, ColorId = 2, DailyPrice = 5000000, Description = "Tesla v12",
                 ModelYear = 2022,
             },
             new Car
             {
-                Id = 4, BrandId = 3, ColorId = 7, DailyPrice = 500000, Description = "Sofas B2", ModelYear = 2019
+                CarId = 4, BrandId = 3, ColorId = 7, DailyPrice = 500000, Description = "Sofas B2", ModelYear = 2019
             },
         };
 
@@ -38,7 +38,7 @@ public class InMemoryCarDal : ICarDal
 
     public List<Car> GetById(int id)
     {
-        return _cars.Where(c => c.Id == id).ToList();
+        return _cars.Where(c => c.CarId == id).ToList();
     }
 
     public List<Car> GetAll()
@@ -63,12 +63,12 @@ public class InMemoryCarDal : ICarDal
 
     public void Update(Car car)
     {
-        var carToUpdate = _cars.SingleOrDefault(c => c.Id == car.Id);
+        var carToUpdate = _cars.SingleOrDefault(c => c.CarId == car.CarId);
         if (carToUpdate != null)
         {
-            carToUpdate.Id = car.Id;
-            carToUpdate.Id = car.Id;
-            carToUpdate.Id = car.Id;
+            carToUpdate.CarId = car.CarId;
+            carToUpdate.CarId = car.CarId;
+            carToUpdate.CarId = car.CarId;
             carToUpdate.DailyPrice = car.DailyPrice;
             carToUpdate.Description = car.Description;
             carToUpdate.ModelYear = car.ModelYear;
@@ -77,10 +77,25 @@ public class InMemoryCarDal : ICarDal
 
     public void Delete(Car car)
     {
-        var carToDelete = _cars.SingleOrDefault(c => c.Id == car.Id);
+        var carToDelete = _cars.SingleOrDefault(c => c.CarId == car.CarId);
     }
 
     public List<CarDetailDto> GetCarDetails()
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<CarDetailDto> GetCarDetailsByCarId(int id)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<CarDetailDto> GetCarDetailsByBrandId(int brandId)
+    {
+        throw new NotImplementedException();
+    }
+
+    public List<CarDetailDto> GetCarDetailsByColorId(int colorId)
     {
         throw new NotImplementedException();
     }

@@ -50,13 +50,18 @@ public class CarImageManager : ICarImageService
 
     public IDataResult<List<CarImage>> GetByCarId(int carId)
     {
-        var result = BusinessRules.Run(CheckCarImage(carId));
-        if (result != null)
+        var result = _carImageDal.GetAll(c => c.CarId == carId);
+        if (result.Count > 0)
         {
-            return new ErrorDataResult<List<CarImage>>(GetDefaultImage(carId).Data);
+            return new SuccessDataResult<List<CarImage>>(result);
         }
-        return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c => c.CarId == carId));
+        List<CarImage> images = new List<CarImage>();
+        images.Add(new CarImage() { CarId = 0, Id = 0, ImagePath = "Uploads/Images/Default.png" });
+        return new SuccessDataResult<List<CarImage>>(images);
     }
+
+
+
 
     public IDataResult<CarImage> GetByImageId(int imageId)
     {

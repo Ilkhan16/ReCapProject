@@ -11,24 +11,26 @@ public class EfCarDal : EfEntityRepositoryBase<Car, ReCapDB>, ICarDal
     {
         using (ReCapDB context = new ReCapDB())
         {
-            var result = from c in context.Cars
-                join b in context.Brands
-                    on c.BrandId equals b.Id
-                join co in context.Colors
-                    on c.ColorId equals co.Id
+            var result = from car in context.Cars
+                join brand in context.Brands
+                    on car.BrandId equals brand.BrandId
+                join color in context.Colors
+                    on car.ColorId equals color.ColorId
 
                 select new CarDetailDto
                 {
-                    CarId = c.Id,
-                    BrandName = b.BrandName,
-                    ColorName = co.ColorName,
-                    ModelYear = c.ModelYear,
-                    DailyPrice = c.DailyPrice,
-                    BrandId = b.Id,
-                    CarName = c.CarName,
-                    ColorId = co.Id,
-                    Description = c.Description,
-                    ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
+                    CarId = car.CarId,
+                    BrandId = brand.BrandId,
+                    ColorId = color.ColorId,
+
+                    CarName = car.CarName,
+                    BrandName = brand.BrandName,
+                    ColorName = color.ColorName,
+
+                    ModelYear = car.ModelYear,
+                    DailyPrice = car.DailyPrice,
+                    Description = car.Description,
+                    ImagePath = (from m in context.CarImages where m.CarId == car.CarId select m.ImagePath).FirstOrDefault()
                 };
             return result.ToList();
         }
@@ -38,78 +40,51 @@ public class EfCarDal : EfEntityRepositoryBase<Car, ReCapDB>, ICarDal
     {
         using (ReCapDB context = new ReCapDB())
         {
-            var result = from c in context.Cars
-                join b in context.Brands
-                    on c.BrandId equals b.Id
-                join co in context.Colors
-                    on c.ColorId equals co.Id
-                where b.Id == brandId
+            var result = from car in context.Cars
+                join brand in context.Brands
+                    on car.BrandId equals brand.BrandId
+                join color in context.Colors
+                    on car.ColorId equals color.ColorId
+                where brand.BrandId == brandId
                 select new CarDetailDto
                 {
-                    CarId = c.Id,
-                    BrandName = b.BrandName,
-                    ColorName = co.ColorName,
-                    ModelYear = c.ModelYear,
-                    DailyPrice = c.DailyPrice,
-                    BrandId = b.Id,
-                    CarName = c.CarName,
-                    ColorId = co.Id,
-                    Description = c.Description,
-                    ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
+                    CarId = car.CarId,
+                    BrandName = brand.BrandName,
+                    ColorName = color.ColorName,
+                    ModelYear = car.ModelYear,
+                    DailyPrice = car.DailyPrice,
+                    BrandId = brand.BrandId,
+                    CarName = car.CarName,
+                    ColorId = color.ColorId,
+                    Description = car.Description,
+                    ImagePath = (from m in context.CarImages where m.CarId == car.CarId select m.ImagePath).FirstOrDefault()
                 };
             return result.ToList();
         }
     }
 
-    public List<CarDetailDto> GetCarDetailsByCarId(int carId)
+    public List<CarDetailDto> GetCarDetailsByCarId(int id)
     {
         using (ReCapDB context = new ReCapDB())
         {
-            var result = from c in context.Cars
-                join b in context.Brands
-                    on c.BrandId equals b.Id
-                join co in context.Colors
-                    on c.ColorId equals co.Id
-                where c.Id == carId
+            var result = from car in context.Cars
+                join brand in context.Brands
+                    on car.BrandId equals brand.BrandId
+                join color in context.Colors
+                    on car.ColorId equals color.ColorId
+                where car.CarId == id
                 select new CarDetailDto
                 {
-                    CarId = c.Id,
-                    BrandName = b.BrandName,
-                    ColorName = co.ColorName,
-                    ModelYear = c.ModelYear,
-                    DailyPrice = c.DailyPrice,
-                    BrandId = b.Id,
-                    CarName = c.CarName,
-                    ColorId = co.Id,
-                    Description = c.Description,
-                    ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
-                };
-            return result.ToList();
-        }
-    }
-
-    public List<CarDetailDto> GetCarDetailsByColorAndByBrand(int colorId, int brandId)
-    {
-        using (ReCapDB context = new ReCapDB())
-        {
-            var result = from c in context.Cars
-                join b in context.Brands
-                    on c.BrandId equals b.Id
-                join co in context.Colors
-                    on c.ColorId equals co.Id
-                where co.Id == colorId & b.Id == brandId
-                select new CarDetailDto
-                {
-                    CarId = c.Id,
-                    BrandName = b.BrandName,
-                    ColorName = co.ColorName,
-                    ModelYear = c.ModelYear,
-                    DailyPrice = c.DailyPrice,
-                    BrandId = b.Id,
-                    CarName = c.CarName,
-                    ColorId = co.Id,
-                    Description = c.Description,
-                    ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
+                    CarId = car.CarId,
+                    BrandName = brand.BrandName,
+                    ColorName = color.ColorName,
+                    ModelYear = car.ModelYear,
+                    DailyPrice = car.DailyPrice,
+                    BrandId = brand.BrandId,
+                    CarName = car.CarName,
+                    ColorId = color.ColorId,
+                    Description = car.Description,
+                    ImagePath = (from m in context.CarImages where m.CarId == car.CarId select m.ImagePath).FirstOrDefault()
                 };
             return result.ToList();
         }
@@ -119,24 +94,24 @@ public class EfCarDal : EfEntityRepositoryBase<Car, ReCapDB>, ICarDal
     {
         using (ReCapDB context = new ReCapDB())
         {
-            var result = from c in context.Cars
-                join b in context.Brands
-                    on c.BrandId equals b.Id
-                join co in context.Colors
-                    on c.ColorId equals co.Id
-                where c.ColorId == colorId
+            var result = from car in context.Cars
+                join brand in context.Brands
+                    on car.BrandId equals brand.BrandId
+                join color in context.Colors
+                    on car.ColorId equals color.ColorId
+                where car.ColorId == colorId
                 select new CarDetailDto
                 {
-                    CarId = c.Id,
-                    BrandName = b.BrandName,
-                    ColorName = co.ColorName,
-                    ModelYear = c.ModelYear,
-                    DailyPrice = c.DailyPrice,
-                    BrandId = b.Id,
-                    CarName = c.CarName,
-                    ColorId = co.Id,
-                    Description = c.Description,
-                    ImagePath = (from m in context.CarImages where m.CarId == c.Id select m.ImagePath).FirstOrDefault()
+                    CarId = car.CarId,
+                    BrandName = brand.BrandName,
+                    ColorName = color.ColorName,
+                    ModelYear = car.ModelYear,
+                    DailyPrice = car.DailyPrice,
+                    BrandId = brand.BrandId,
+                    CarName = car.CarName,
+                    ColorId = color.ColorId,
+                    Description = car.Description,
+                    ImagePath = (from m in context.CarImages where m.CarId == car.CarId select m.ImagePath).FirstOrDefault()
                 };
             return result.ToList();
         }

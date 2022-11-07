@@ -25,7 +25,7 @@ public class ColorManager:IColorService
 
     [CacheAspect]
     public IDataResult<Color> GetById(int id)
-        => new SuccessDataResult<Color>(_colorDal.Get(color => color.Id == id), Messages.Listed);
+        => new SuccessDataResult<Color>(_colorDal.Get(color => color.ColorId == id), Messages.Listed);
 
     [SecuredOperation("Color.all,Admin")]
     [CacheRemoveAspect("IColorService.Get")]
