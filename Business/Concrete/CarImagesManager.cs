@@ -56,10 +56,9 @@ public class CarImageManager : ICarImageService
             return new SuccessDataResult<List<CarImage>>(result);
         }
         List<CarImage> images = new List<CarImage>();
-        images.Add(new CarImage() { CarId = 0, Id = 0, ImagePath = "Uploads/Images/Default.png" });
+        images.Add(new CarImage() { CarId = 0, Id = 0, ImagePath = "Uploads/Images/Default2.png" });
         return new SuccessDataResult<List<CarImage>>(images);
     }
-
 
 
 
@@ -87,7 +86,7 @@ public class CarImageManager : ICarImageService
     {
 
         List<CarImage> carImage = new List<CarImage>();
-        carImage.Add(new CarImage { CarId = carId, Date = DateTime.UtcNow, ImagePath = "Default.png" });
+        carImage.Add(new CarImage { CarId = carId, Date = DateTime.UtcNow, ImagePath = "Default2.png" });
         return new SuccessDataResult<List<CarImage>>(carImage);
     }
     private IResult CheckCarImage(int carId)
