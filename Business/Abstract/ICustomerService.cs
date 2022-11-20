@@ -1,5 +1,4 @@
 ﻿using Entities.Concrete;
-using Core.Business.Abstract;
 using Core.Utilities.Results.Abstract;
 
 namespace Business.Abstract;

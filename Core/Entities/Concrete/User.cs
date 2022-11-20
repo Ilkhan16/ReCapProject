@@ -1,5 +1,4 @@
-﻿using System.Security.AccessControl;
-using Core.Entities.Abstract;
+﻿using Core.Entities.Abstract;
 
 namespace Core.Entities.Concrete;
 

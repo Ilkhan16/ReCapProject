@@ -1,7 +1,5 @@
 ﻿using Core.Entities.Concrete;
 using FluentValidation;
-using FluentValidation.Validators;
-using System.Data;
 
 namespace Business.ValidationRules.FluentValidation;
 

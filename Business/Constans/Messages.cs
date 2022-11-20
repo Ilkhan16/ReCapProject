@@ -42,6 +42,7 @@ public static class Messages
     #region RentalMessages
     public static string RentalAdded = "Rental added.";
     public static string RentalNotAdded = "You need to deliver the car!!!";
+    public static string RentalIsTheCarAlready = "The vehicle has been rented. I'm sorry.";
     public static string RentalUpdated = "Rental updated.";
     public static string RentalRemoved = "Rental removed!";
     public static string RentalListed = "Rentals listed";
@@ -65,5 +66,14 @@ public static class Messages
     public static string AuthorizationDenied = "You do not have the required permission";
     public static string CarNameAlreadyExists = "Car name already in use, enter a different name";
     public static string DescriptionDefault = "Rental Car";
+
+
     #endregion
+
+    public static string PaymentListSuccess = "Payments listed successfully";
+    public static string PaymentAdded = "Payment Confirmed.";
+    public static string PaymentDeleted = "Payment Deleted.";
+    public static string PaymentUpdated = "Payment Updated.";
+    public static string CardNumberMustConsistOfLettersOnly = "The card number can only consist of numbers!";
+    public static string LastTwoDigitsOfYearMustBeEntered = "The last two digits of the expiry date must be entered!";
 }

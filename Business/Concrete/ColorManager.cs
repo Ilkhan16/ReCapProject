@@ -1,9 +1,7 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constans;
-using Business.ValidationRules.FluentValidation;
 using Core.Aspect.Autofac.Caching;
-using Core.Aspects.AutoFac.Validation;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;

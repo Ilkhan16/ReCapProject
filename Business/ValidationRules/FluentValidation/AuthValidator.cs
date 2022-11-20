@@ -1,6 +1,4 @@
-﻿using Core.Entities.Concrete;
-using Entities.Concrete;
-using Entities.DTOs;
+﻿using Entities.DTOs;
 using FluentValidation;
 
 namespace Business.ValidationRules.FluentValidation;

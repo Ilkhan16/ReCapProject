@@ -8,7 +8,6 @@ using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
-using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.DTOs;
 
@@ -33,11 +32,10 @@ public class RentalManager : IRentalService
         => new SuccessDataResult<Rental>(_rentalDal.Get(rental => rental.Id == id), Messages.Listed);
 
     [ValidationAspect(typeof(RentalValidator))]
-    [SecuredOperation("Rental.all,Admin")]
     [CacheRemoveAspect("IRentalService.Get")]
     public IResult Add(Rental rental)
     {
-        var result = BusinessRules.Run(CheckIfCarIsRental(rental));
+        var result = BusinessRules.Run(CheckIfCarIsRental(rental),CheckIfTheVehicleIsRented(rental));
         if (result != null)
         {
             return result;
@@ -76,6 +74,17 @@ public class RentalManager : IRentalService
         if (result != null)
         {
             return new ErrorResult(Messages.RentalNotAdded);
+        }
+
+        return new SuccessResult();
+    }
+
+    private IResult CheckIfTheVehicleIsRented(Rental rental)
+    {
+        var result = _rentalDal.Get(r => r.CarId == rental.CarId);
+        if (result!=null)
+        {
+            return new ErrorResult(Messages.RentalIsTheCarAlready);
         }
 
         return new SuccessResult();
